@@ -18,10 +18,10 @@ func InitSarmaClient(c *config.Config) sarama.Client {
 		cf.Net.SASL.User = conf.Username
 		cf.Net.SASL.Password = conf.Password
 		cf.Net.SASL.Mechanism = sarama.SASLTypePlaintext
-	}
-	cf.Net.TLS.Enable = true
-	cf.Net.TLS.Config = &tls.Config{
-		InsecureSkipVerify: true, // 阿里云不要求证书校验
+		cf.Net.TLS.Enable = true
+		cf.Net.TLS.Config = &tls.Config{
+			InsecureSkipVerify: true, // 阿里云不要求证书校验
+		}
 	}
 	cf.Producer.Partitioner = sarama.NewHashPartitioner
 	cf.Producer.Compression = sarama.CompressionSnappy
