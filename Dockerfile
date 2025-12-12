@@ -34,6 +34,7 @@ ARG ENV=test
 # 只拷贝「产物」
 COPY --from=builder /backend/server ./server
 COPY --from=builder /backend/config.${ENV}.yaml ./config.yaml
+RUN cat config.yaml
 
 EXPOSE 9999
 ENTRYPOINT ["./server"]
