@@ -1,0 +1,13 @@
+version: v1
+
+plugins:
+  # Protobuf messages
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/go
+    opt:
+      - paths=source_relative
+  # gRPC service stubs
+  - plugin: buf.build/grpc/go
+    out: gen/go
+    opt:
+      - paths=source_relative

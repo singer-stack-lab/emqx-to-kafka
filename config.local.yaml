@@ -1,0 +1,13 @@
+
+
+Kafka:
+  Brokers: ["alikafka-serverless-cn-zqb4gbwti01-1000.alikafka.aliyuncs.com:9093","alikafka-serverless-cn-zqb4gbwti01-2000.alikafka.aliyuncs.com:9093","alikafka-serverless-cn-zqb4gbwti01-3000.alikafka.aliyuncs.com:9093"]
+  ClientId: "smart-cabinet-local"
+  UserName: "alikafka_serverless-cn-zqb4gbwti01"
+  Password: "hzxyJoFn6BNUXzP27wsF2bqhQBG1plSv"
+  NeedAuth: true
+
+
+Rules:
+  - EmqxTopicPrefix: "111"
+    KafkaTopic: "222"

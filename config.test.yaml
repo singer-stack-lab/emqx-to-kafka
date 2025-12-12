@@ -1,0 +1,13 @@
+
+
+Kafka:
+  brokers: [ "alikafka-serverless-cn-zqb4gbwti01-1000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-2000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-3000-vpc.alikafka.aliyuncs.com:9092" ]
+  username: ""
+  password: ""
+  need_auth: false
+
+
+
+Rules:
+  - EmqxTopicPrefix: "111"
+    KafkaTopic: "222"
