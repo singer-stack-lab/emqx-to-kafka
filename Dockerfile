@@ -35,6 +35,7 @@ ARG ENV=test
 COPY --from=builder /backend/server ./server
 COPY --from=builder /backend/config.${ENV}.yaml ./config.yaml
 RUN cat config.yaml
+RUN ls
 
 EXPOSE 9999
 ENTRYPOINT ["./server"]
