@@ -1,6 +1,6 @@
 module github.com/singer-stack-lab/emqx-to-kafka
 
-go 1.25.3
+go 1.25.0
 
 require (
 	github.com/IBM/sarama v1.46.3

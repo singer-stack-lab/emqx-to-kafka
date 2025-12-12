@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"log"
 
 	pb "github.com/singer-stack-lab/emqx-to-kafka/gen/go/proto"
 )
@@ -20,14 +21,11 @@ func NewExHookServer(p *KafkaProducer, r *TopicRouter) *ExHookServer {
 }
 
 func (s *ExHookServer) OnMessagePublish(ctx context.Context, req *pb.MessagePublishRequest) (*pb.ValuedResponse, error) {
+	log.Println("OnMessagePublish", req)
 	topic := req.Message.Topic
 	value := req.Message.Payload
-	headers := req.Message.Headers
 
-	clientId := ""
-	if v, ok := headers["clientid"]; ok {
-		clientId = v
-	}
+	clientId := req.Message.GetFrom()
 	ok, kafkaTopic := s.router.Map(topic)
 	if ok {
 		// 不转发
@@ -43,6 +41,7 @@ func (s *ExHookServer) OnMessagePublish(ctx context.Context, req *pb.MessagePubl
 }
 
 func (s *ExHookServer) OnProviderLoaded(ctx context.Context, _ *pb.ProviderLoadedRequest) (*pb.LoadedResponse, error) {
+	log.Println("OnProviderLoaded")
 	return &pb.LoadedResponse{
 		Hooks: []*pb.HookSpec{
 			{
@@ -53,5 +52,6 @@ func (s *ExHookServer) OnProviderLoaded(ctx context.Context, _ *pb.ProviderLoade
 }
 
 func (s *ExHookServer) OnProviderUnloaded(ctx context.Context, _ *pb.ProviderUnloadedRequest) (*pb.EmptySuccess, error) {
+	log.Println("OnProviderUnloaded")
 	return &pb.EmptySuccess{}, nil
 }
