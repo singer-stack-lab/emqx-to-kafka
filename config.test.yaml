@@ -1,10 +1,11 @@
 
 
 Kafka:
-  brokers: ["alikafka-serverless-cn-zqb4gbwti01-1000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-2000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-3000-vpc.alikafka.aliyuncs.com:9092"]
-  username: ""
-  password: ""
-  need_auth: false
+  Brokers: ["alikafka-serverless-cn-zqb4gbwti01-1000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-2000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-3000-vpc.alikafka.aliyuncs.com:9092"]
+  ClientId: ""
+  UserName: ""
+  Password: ""
+  NeedAuth: false
 
 Rules:
   - EmqxTopicPrefix: "/device/123/message/up/ivs_result"
