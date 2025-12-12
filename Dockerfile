@@ -5,22 +5,9 @@ COPY . .
 
 RUN rm -f config.yaml
 
-# 构建参数
-ARG ENV=test
-COPY --from=0 /backend ./
-#COPY --from=0 /backend/resource ./resource/
-COPY --from=0 /backend/config.${ENV}.yaml ./config.yaml
-
 # 安装 git
 RUN apk add --no-cache git ca-certificates tzdata build-base
 
-
-RUN go env -w GO111MODULE=on \
-    && go env -w CGO_ENABLED=0 \
-    && go env -w GOPRIVATE=github.com/singer-stack-lab \
-    && go env \
-    && go mod tidy \
-    && go build -o server .
 
 FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/alpine:latest
 
@@ -32,6 +19,18 @@ RUN apk update && apk add --no-cache tzdata && \
     echo "Asia/Shanghai" > /etc/timezone
 
 WORKDIR /backend
+
+# 构建参数
+ARG ENV=test
+COPY --from=0 /backend ./
+#COPY --from=0 /backend/resource ./resource/
+COPY --from=0 /backend/config.${ENV}.yaml ./config.yaml
+RUN go env -w GO111MODULE=on \
+    && go env -w CGO_ENABLED=0 \
+    && go env -w GOPRIVATE=github.com/singer-stack-lab \
+    && go env \
+    && go mod tidy \
+    && go build -o server .
 
 # 挂载目录：如果使用了sqlite数据库，容器命令示例：docker run -d -v /宿主机路径/gva.db:/go/src/github.com/flipped-aurora/gin-vue-admin/server/gva.db -p 8888:8888 --name gva-server-v1 gva-server:1.0
 # VOLUME ["/go/src/github.com/flipped-aurora/gin-vue-admin/server"]
