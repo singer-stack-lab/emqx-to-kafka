@@ -1,11 +1,11 @@
 
 
 Kafka:
-  Brokers: ["alikafka-serverless-cn-zqb4gbwti01-1000.alikafka.aliyuncs.com:9093","alikafka-serverless-cn-zqb4gbwti01-2000.alikafka.aliyuncs.com:9093","alikafka-serverless-cn-zqb4gbwti01-3000.alikafka.aliyuncs.com:9093"]
-  ClientId: "smart-cabinet-local"
-  UserName: "alikafka_serverless-cn-zqb4gbwti01"
-  Password: "hzxyJoFn6BNUXzP27wsF2bqhQBG1plSv"
-  NeedAuth: true
+  Brokers: ["alikafka-serverless-cn-zqb4gbwti01-1000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-2000-vpc.alikafka.aliyuncs.com:9092","alikafka-serverless-cn-zqb4gbwti01-3000-vpc.alikafka.aliyuncs.com:9092"]
+  ClientId: ""
+  UserName: ""
+  Password: ""
+  NeedAuth: false
 
 Rules:
   - EmqxTopicPrefix: "/device/123/message/up/ivs_result"
