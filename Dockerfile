@@ -3,6 +3,8 @@ FROM crpi-enwh9j989b0fsg8b.cn-guangzhou.personal.cr.aliyuncs.com/alexxqli/base:g
 WORKDIR /backend
 COPY . .
 
+RUN rm -f config.yaml
+
 # 安装 git
 RUN apk add --no-cache git ca-certificates tzdata build-base
 
