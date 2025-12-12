@@ -11,8 +11,7 @@ import (
 func InitSarmaClient(c *config.Config) sarama.Client {
 	conf := c.Kafka
 	cf := sarama.NewConfig()
-	cf.ClientID = conf.ClientID
-	cf.Version = sarama.V2_6_0_0
+	cf.Version = sarama.V3_3_1_0
 
 	if conf.NeedAuth {
 		cf.Net.SASL.Enable = true
@@ -24,10 +23,14 @@ func InitSarmaClient(c *config.Config) sarama.Client {
 	cf.Net.TLS.Config = &tls.Config{
 		InsecureSkipVerify: true, // 阿里云不要求证书校验
 	}
-	cf.Producer.Return.Successes = true // 必须
-	cf.Producer.Return.Errors = true    // 建议
+	cf.Producer.Partitioner = sarama.NewHashPartitioner
+	cf.Producer.Compression = sarama.CompressionSnappy
+	cf.Producer.CompressionLevel = sarama.CompressionLevelDefault
+	cf.Producer.RequiredAcks = sarama.NoResponse // Wait for all in-sync replicas to ack the message
+	cf.Producer.Retry.Max = 10                   // Retry up to 10 times to produce the message
+	cf.Producer.Return.Successes = true          // 必须
+	cf.Producer.Return.Errors = true             // 建议
 	cf.Producer.RequiredAcks = sarama.WaitForAll
-	cf.Producer.Retry.Max = 3
 	client, err := sarama.NewClient(conf.Brokers, cf)
 	if err != nil {
 		panic(err)
