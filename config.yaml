@@ -9,5 +9,5 @@ Kafka:
 
 
 Rules:
-  - EmqxTopicPrefix: "/device/123/message/up/ivs_result"
-    KafkaTopic: "device_123_message_up_ivs_result"
+  - EmqxTopicPrefix: "^/device/[^/]+/message/up/ivs_result"
+    KafkaTopic: "device_message_up_ivs_result"
