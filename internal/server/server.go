@@ -28,7 +28,7 @@ func (s *ExHookServer) OnMessagePublish(ctx context.Context, req *pb.MessagePubl
 	clientId := req.Message.GetFrom()
 	ok, kafkaTopic := s.router.Map(topic)
 	if ok {
-		// 不转发
+		// 转发
 		_ = s.producer.Send(kafkaTopic, clientId, value)
 	}
 
