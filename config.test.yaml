@@ -8,5 +8,5 @@ Kafka:
   NeedAuth: false
 
 Rules:
-  - EmqxTopicPrefix: "^/device/[^/]+/message/up/ivs_result"
+  - EmqxTopicPrefix: "device/[^/]+/message/up/ivs_result"
     KafkaTopic: "device_message_up_ivs_result"
